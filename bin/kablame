@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+#
+
+usage = <<USAGE
+Run kablame
+Usage: kablame <directory> <format>
+USAGE
+
+require 'fileutils'
+
+target = ARGV.first
+
+if target.nil? || target.empty?
+	puts usage
+	exit(0)
+end
+
+#real stuff will go here?  fancy
