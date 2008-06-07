@@ -1,0 +1,8 @@
+2 jacob.dunphy class Kablame
+2 jacob.dunphy 
+2 jacob.dunphy   def initialize()
+2 jacob.dunphy     @users = {}
+2 jacob.dunphy   end
+2 jacob.dunphy   
+4 se@else.com    def kablame
+4 se@else.com      folders.each do |directory|

@@ -1,0 +1,7 @@
+^8dec262 bin/kablame     (Jacob Dunphy 2008-06-06 17:05:36 -0700  1) #!/usr/bin/env ruby
+^8dec262 bin/kablame     (Jacob Dunphy 2008-06-06 17:05:36 -0700  2) #
+^8dec262 bin/kablame     (Jacob Dunphy 2008-06-06 17:05:36 -0700  3) 
+^8dec262 bin/kablame     (Jacob Dunphy 2008-06-06 17:05:36 -0700  4) usage = <<USAGE
+68e8b7fd bin/git-kablame (Someone Else 2008-06-07 01:15:38 -0700  5) Run git-kablame
+68e8b7fd bin/git-kablame (Someone Else 2008-06-07 01:15:38 -0700  6) Usage: git-kablame <directory>
+^8dec262 bin/kablame     (Someone Else 2008-06-06 17:05:36 -0700  7) USAGE
