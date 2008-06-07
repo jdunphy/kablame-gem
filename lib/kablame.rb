@@ -2,8 +2,8 @@ class Kablame
 
   def initialize(dirs = nil, formats = nil)
     @users = {}    
-    @folders = dirs ? dirs.split : %w{app lib}
-    @formats = formats ? formats.split : %w{rb r?html}
+    @folders = dirs.split
+    @formats = formats ? formats.split : %w{rb}
   end
   
   def kablame

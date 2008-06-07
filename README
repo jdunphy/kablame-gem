@@ -1,0 +1,23 @@
+= Kablame 0.1.0
+
+So who really gets bragging rights?
+
+
+== Description
+
+Find out how many lines of test code each SVN contributor added, according to the almighty blame. 
+
+
+== Usage
+
+Very simple right now...
+
+git-kablame <directory>
+
+or 
+
+svn-kablame <directory>
+
+Right now it'll only kablame ruby files.
+
+Additions coming soon to support other file formats.

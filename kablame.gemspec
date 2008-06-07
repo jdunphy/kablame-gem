@@ -4,18 +4,16 @@ Gem::Specification.new do |s|
 
   s.name = 'kablame'
   s.author = "Jacob Dunphy"
-  s.version = '0.0.1'
+  s.version = '0.1.0'
   s.summary = 'Use svn or git blame to show you who deserves the credit'
   
-  s.files = FileList['lib/*.rb', 'bin/*'].to_a
+  s.files = FileList['lib/kablame.rb', 'bin/git-kablame','bin/svn-kablame']
   
   s.description = <<-EOF
           Counting lines of code based upon blame.
   EOF
   
-  s.executables = ['git-kablame']
+  s.executables = ['git-kablame', 'svn-kablame']
   
-  s.email = 'jacob.dunphy@gmail.com'
-  
-  s.has_rdoc = false
+  s.email = 'jacob.dunphy@gmail.com'  
 end

@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+#
+
+usage = <<USAGE
+Run git-kablame
+Usage: git-kablame <directory>
+USAGE
+
+require 'fileutils'
+
+target = ARGV.first
+
+if target.nil? || target.empty?
+	puts usage
+	exit(0)
+end
+require 'rubygems'
+gem 'kablame'
+require 'kablame'
+SvnKablame.new(target).kablame
