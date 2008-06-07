@@ -2,8 +2,8 @@
 #
 
 usage = <<USAGE
-Run kablame
-Usage: kablame <version-control> <directory>
+Run git-kablame
+Usage: git-kablame <directory>
 USAGE
 
 require 'fileutils'
@@ -14,5 +14,7 @@ if target.nil? || target.empty?
 	puts usage
 	exit(0)
 end
-
-#real stuff will go here?  fancy
+require 'rubygems'
+gem 'kablame'
+require 'kablame'
+GitKablame.new(target).kablame

@@ -1,6 +1,6 @@
 class Kablame
 
-  def initialize(dirs, formats)
+  def initialize(dirs = nil, formats = nil)
     @users = {}    
     @folders = dirs ? dirs.split : %w{app lib}
     @formats = formats ? formats.split : %w{rb r?html}
@@ -54,7 +54,7 @@ class Kablame
   
 end
 
-module Svn
+class SvnKablame < Kablame
   def blank_line_regex; /\d+[\ ]+(\w+)+(\s+)$/; end
   
   def name_match_regex; /\d+[\ ]+(\w+)/; end
@@ -66,7 +66,7 @@ module Svn
   def version_control; 'svn'; end
 end
 
-module Git 
+class GitKablame < Kablame     
   def blank_line_regex; /\(.+[\+-]\d{4}\s+\d+\)(\s*)$/; end
   
   def name_match_regex; /\((\w+)\s/; end
