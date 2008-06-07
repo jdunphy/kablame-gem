@@ -3,7 +3,7 @@
 
 usage = <<USAGE
 Run kablame
-Usage: kablame <directory> <format>
+Usage: kablame <version-control> <directory>
 USAGE
 
 require 'fileutils'
