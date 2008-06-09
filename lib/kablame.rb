@@ -2,7 +2,7 @@ class Kablame
 
   def initialize(dirs = nil, formats = nil)
     @users = {}    
-    @folders = dirs.split
+    @folders = dirs.split.map {|dir| dir.sub(/\/+\Z/, '') }
     @formats = formats ? formats.split : %w{rb}
   end
   
@@ -51,7 +51,6 @@ class Kablame
   def file_format_regex
     %r{\.(#{@formats.join('|')})}
   end
-  
 end
 
 class SvnKablame < Kablame
