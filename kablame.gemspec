@@ -15,5 +15,7 @@ Gem::Specification.new do |s|
   
   s.executables = ['git-kablame', 'svn-kablame']
   
+  s.homepage = 'http://github.com/jdunphy/kablame-gem/tree/master'
+  s.rubyforge_project = 'kablame'
   s.email = 'jacob.dunphy@gmail.com'  
 end
