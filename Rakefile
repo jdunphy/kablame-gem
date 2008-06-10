@@ -7,4 +7,12 @@ namespace :gem do
 end
 
 desc("Run the specs")
-task(:spec) { system 'ruby specs/all.rb' }   
+task(:spec) { system 'ruby specs/all.rb' }
+
+namespace :rdoc do
+  desc "Clean rdoc"
+  task(:clean) { FileUtils.rm_rf 'doc' }
+  
+  desc("Generate rdoc")
+  task(:build => :clean) { system 'rdoc README MIT-LICENSE lib'}
+end 

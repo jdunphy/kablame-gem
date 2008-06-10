@@ -1,11 +1,11 @@
-= Kablame 0.1.2
+= Kablame 0.1.3
 
 So who really gets bragging rights?
 
 
 == Description
 
-Find out how many lines of test code each SVN contributor added, according to the almighty blame. 
+Find out how many lines of test code each project contributor added, according to the almighty blame. 
 
 
 == Usage

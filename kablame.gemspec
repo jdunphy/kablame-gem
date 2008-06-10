@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
 
   s.name = 'kablame'
   s.author = "Jacob Dunphy"
-  s.version = '0.1.2'
+  s.version = '0.1.3'
   s.summary = 'Use svn or git blame to show you who deserves the credit'
   
   s.files = FileList['lib/kablame.rb', 'bin/git-kablame','bin/svn-kablame']
@@ -18,4 +18,5 @@ Gem::Specification.new do |s|
   s.homepage = 'http://github.com/jdunphy/kablame-gem/tree/master'
   s.rubyforge_project = 'kablame'
   s.email = 'jacob.dunphy@gmail.com'  
+  s.has_rdoc = true
 end
