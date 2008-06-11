@@ -8,13 +8,13 @@ USAGE
 
 require 'fileutils'
 
-target = ARGV.first
+targets = ARGV
 
-if target.nil? || target.empty?
+if targets.nil? || targets.empty?
 	puts usage
 	exit(0)
 end
 require 'rubygems'
 gem 'kablame'
 require 'kablame'
-GitKablame.new(target).kablame
+GitKablame.new(targets).kablame

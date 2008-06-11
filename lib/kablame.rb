@@ -2,7 +2,7 @@ class Kablame
 
   def initialize(dirs = nil, formats = nil)
     @users = {}    
-    @folders = dirs.split.map {|dir| dir.sub(/\/+\Z/, '') }
+    @folders = dirs.map {|dir| dir.sub(/\/+\Z/, '') }
     @formats = formats ? formats.split : %w{rb}
   end
   

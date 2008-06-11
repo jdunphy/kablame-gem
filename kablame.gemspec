@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
 
   s.name = 'kablame'
   s.author = "Jacob Dunphy"
-  s.version = '0.1.3'
+  s.version = '0.2.0'
   s.summary = 'Use svn or git blame to show you who deserves the credit'
   
   s.files = FileList['lib/kablame.rb', 'bin/git-kablame','bin/svn-kablame']
