@@ -40,7 +40,7 @@ class Kablame
     @users.values.sort.each do |user|
       puts user.to_s
     end 
-    puts "**LOSER** #{@users.values.sort.last.name} **LOSER**"
+    puts "**LOSER** #{@users.values.sort.last.name} **LOSER**" unless @users.length == 1
   end
     
   
@@ -68,7 +68,7 @@ end
 class GitKablame < Kablame     
   def blank_line_regex; /\(.+[\+-]\d{4}\s+\d+\)(\s*)$/; end
   
-  def name_match_regex; /\((.+)\s+\d{4}\-\d{2}/; end   
+  def name_match_regex; /\(([^\)]+)\s+\d{4}\-\d{2}/; end   
   
   def get_blame_lines(filename)
     `git blame #{filename}`.split("\n")
