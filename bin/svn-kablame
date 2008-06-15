@@ -1,20 +1,17 @@
 #!/usr/bin/env ruby
 #
 
-usage = <<USAGE
-Run git-kablame
-Usage: git-kablame <directory>
-USAGE
-
 require 'fileutils'
-
-targets = ARGV
-
-if targets.nil? || targets.empty?
-	puts usage
-	exit(0)
-end
 require 'rubygems'
 gem 'kablame'
 require 'kablame'
-SvnKablame.new(targets).kablame
+require 'kablame_options'
+
+formats = KablameOptions.new('svn').format_parse(ARGV)
+targets = ARGV
+
+if targets.nil? || targets.empty?
+	KablameOptions.print_usage('svn')
+	exit(0)
+end
+SvnKablame.new(targets, formats).kablame
