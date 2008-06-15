@@ -21,7 +21,6 @@ class KablameOptions
   end
   
   def format_parse(args)
-    @formats = nil
     opts.parse!(args)
     @formats
   end
