@@ -1,3 +1,4 @@
+require 'kablame_options'
 class Kablame
 
   def initialize(dirs = nil, formats = nil)
@@ -51,6 +52,17 @@ class Kablame
   def file_format_regex
     %r{\.(#{@formats.join('|')})}
   end
+  
+  def self.kablame(args)
+    formats = KablameOptions.new(type).format_parse(args)
+    targets = args
+
+    if targets.nil? || targets.empty?
+    	KablameOptions.print_usage(type)
+    	exit(0)
+    end
+    new(targets, formats).kablame
+  end
 end
 
 class SvnKablame < Kablame
@@ -62,7 +74,7 @@ class SvnKablame < Kablame
     `svn blame #{filename}`.split("\n")
   end
 
-  def version_control; 'svn'; end
+  def self.type; 'svn'; end
 end
 
 class GitKablame < Kablame     
@@ -74,7 +86,7 @@ class GitKablame < Kablame
     `git blame #{filename}`.split("\n")
   end
   
-  def version_control; 'git'; end
+  def self.type; 'git'; end
 end
 
 class KablameUser

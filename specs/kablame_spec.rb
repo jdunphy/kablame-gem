@@ -16,3 +16,29 @@ describe Kablame, "printing results" do
     out.should_not =~ /\*\*LOSER\*\*.+\*\*LOSER\*\*/
   end
 end
+
+describe Kablame, "handling multiple directories" do
+  
+  it "should accept multiple directories" do
+    Kablame.stub!(:type).and_return('generic')
+    Kablame.should_receive(:new).with(['lib', 'specs'], nil).and_return(mock('kablame', :kablame => true))
+    capture_stdout { Kablame.kablame(['lib', 'specs'])}
+  end
+  
+  it "should provide feedback about multiple directories" do
+    output = capture_stdout { GitKablame.kablame(['lib', 'specs'])}.string
+    
+    output.should =~ /Kablaming lib/
+    output.should =~ /Kablaming spec/
+  end
+  
+end
+
+describe Kablame, "parsing ARGV" do 
+  it "should parse file formats" do
+    Kablame.stub!(:type).and_return('generic')
+    Kablame.should_receive(:new).with(['lib', 'specs'], ['xml', 'html']).and_return(mock('kablame', :kablame => true))
+    capture_stdout { Kablame.kablame(['-f', 'xml,html', 'lib', 'specs'])}
+  end  
+  
+end

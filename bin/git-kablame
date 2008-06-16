@@ -5,13 +5,5 @@ require 'fileutils'
 require 'rubygems'
 gem 'kablame'
 require 'kablame'
-require 'kablame_options'
 
-formats = KablameOptions.new('git').format_parse(ARGV)
-targets = ARGV
-
-if targets.nil? || targets.empty?
-	KablameOptions.print_usage('git')
-	exit(0)
-end
-GitKablame.new(targets, formats).kablame
+GitKablame.kablame(ARGV)

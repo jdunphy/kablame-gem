@@ -5,13 +5,5 @@ require 'fileutils'
 require 'rubygems'
 gem 'kablame'
 require 'kablame'
-require 'kablame_options'
 
-formats = KablameOptions.new('svn').format_parse(ARGV)
-targets = ARGV
-
-if targets.nil? || targets.empty?
-	KablameOptions.print_usage('svn')
-	exit(0)
-end
-SvnKablame.new(targets, formats).kablame
+SvnKablame.kablame(ARGV)
