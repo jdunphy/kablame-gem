@@ -14,5 +14,5 @@ namespace :rdoc do
   task(:clean) { FileUtils.rm_rf 'doc' }
   
   desc("Generate rdoc")
-  task(:build => :clean) { system 'rdoc README MIT-LICENSE lib'}
+  task(:build => :clean) { system 'rdoc README MIT-LICENSE CHANGELOG lib'}
 end 

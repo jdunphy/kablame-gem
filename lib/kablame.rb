@@ -12,7 +12,7 @@ class Kablame
       if File.exists?(directory) 
         puts "\nKablaming #{directory}"
         Dir.glob(directory+"/**/*").grep(file_format_regex).each do |filename|
-          process_file(filename)
+          process_file(filename.sub(/^\.\//, ''))
         end
       else
         puts "#{directory} not found. Skipping it!"

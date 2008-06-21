@@ -1,0 +1,7 @@
+0.2.1
+ * Fixed a bug when calling git-kablame .
+ 
+0.2.0
+ * First "real" release with actual features
+ * Included multiple directory kablaming
+ * Included file format selection via the -f parameter
