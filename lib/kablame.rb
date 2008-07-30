@@ -25,34 +25,6 @@ class Kablame
     end
   end 
   
-  def process_file(filename)
-    print '.'
-    STDOUT.flush
-    get_blame_lines(filename).each do |line|
-      next if line.match(blank_line_regex)
-      name = line.match(name_match_regex)[1].strip  
-      (@users[name] ? @users[name].increment : @users[name] = KablameUser.new(name)) unless name.nil?
-    end
-  end
-  
-  def print_results
-    puts "\n\n++++++++++++TOTALS++++++++++++"
-    puts "**WINNER** #{@users.values.sort.first.name} **WINNER**"
-    @users.values.sort.each do |user|
-      puts user.to_s
-    end 
-    puts "**LOSER** #{@users.values.sort.last.name} **LOSER**" unless @users.length == 1
-  end
-    
-  
-  def folders 
-    @folders
-  end
-  
-  def file_format_regex
-    %r{\.(#{@formats.join('|')})}
-  end
-  
   def self.kablame(args)
     formats = KablameOptions.new(type).format_parse(args)
     targets = args
@@ -63,30 +35,67 @@ class Kablame
     end
     new(targets, formats).kablame
   end
+  
+  def process_file(filename)
+    print '.'
+    STDOUT.flush
+    get_blame_lines(filename).each do |line|
+      next if line.match(blank_line_regex)
+      name = line.match(name_match_regex)[1].strip  
+      (@users[name] ? @users[name].increment : @users[name] = KablameUser.new(name)) unless name.nil?
+    end
+  end
+
+  def print_results
+    puts "\n\n++++++++++++TOTALS++++++++++++"
+    puts "**WINNER** #{@users.values.sort.first.name} **WINNER**"
+    @users.values.sort.each do |user|
+      puts user.to_s
+    end 
+    puts "**LOSER** #{@users.values.sort.last.name} **LOSER**" unless @users.length == 1
+  end
+  
+  private  
+  
+    def folders 
+      @folders
+    end
+  
+    def file_format_regex
+      %r{\.(#{@formats.join('|')})}
+    end
+  
 end
 
 class SvnKablame < Kablame
-  def blank_line_regex; /\d+[\ ]+(\w+)+(\s+)$/; end
-  
-  def name_match_regex; /\d+[\ ]+([\w@\.\-]+)/; end
- 
-  def get_blame_lines(filename)
-    `svn blame #{filename}`.split("\n")
-  end
 
   def self.type; 'svn'; end
+
+  private
+
+    def blank_line_regex; /\d+[\ ]+(\w+)+(\s+)$/; end
+  
+    def name_match_regex; /\d+[\ ]+([\w@\.\-]+)/; end
+ 
+    def get_blame_lines(filename)
+      `svn blame #{filename}`.split("\n")
+    end
+    
 end
 
-class GitKablame < Kablame     
-  def blank_line_regex; /\(.+[\+-]\d{4}\s+\d+\)(\s*)$/; end
-  
-  def name_match_regex; /\(([^\)]+)\s+\d{4}\-\d{2}/; end   
-  
-  def get_blame_lines(filename)
-    `git blame #{filename}`.split("\n")
-  end
-  
+class GitKablame < Kablame    
+     
   def self.type; 'git'; end
+  
+  private
+  
+    def blank_line_regex; /\(.+[\+-]\d{4}\s+\d+\)(\s*)$/; end
+  
+    def name_match_regex; /\(([^\)]+)\s+\d{4}\-\d{2}/; end   
+  
+    def get_blame_lines(filename)
+      `git blame #{filename}`.split("\n")
+    end
 end
 
 class KablameUser
@@ -98,10 +107,6 @@ class KablameUser
     @name = name
   end
 
-  def <=>(other)
-    other.line_count <=> @line_count
-  end
-
   def to_s
     "#{@name.ljust(20)} ==> #{@line_count.to_s.rjust(4)}"
   end
@@ -109,4 +114,11 @@ class KablameUser
   def increment
     @line_count = @line_count.next
   end
+  
+  private
+
+    def <=>(other)
+      other.line_count <=> @line_count
+    end
+  
 end
