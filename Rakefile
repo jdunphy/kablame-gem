@@ -15,4 +15,9 @@ namespace :rdoc do
   
   desc("Generate rdoc")
   task(:build => :clean) { system 'rdoc README MIT-LICENSE CHANGELOG lib'}
+  
+  desc 'Publish rdoc'
+  task( :publish => :build ) do
+    `rsync -a --delete ./doc/ jdunphy@rubyforge.org:/var/www/gforge-projects/kablame/`
+  end
 end 
